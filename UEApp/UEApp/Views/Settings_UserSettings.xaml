@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:local="clr-namespace:UEApp;assembly=UEApp"
+            x:Class="UEApp.Settings_UserSettings">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" Spacing="7.5" Margin="15">
+            <Button Text="Change Email" FontSize="Medium" HorizontalOptions="StartAndExpand" TextColor="{StaticResource PrimaryTextColor}"
+                    Clicked="Email_Button_Clicked" BackgroundColor="Transparent"/>
+            <BoxView Color="Black" HeightRequest="1" Opacity="0.02"/>
+            <Button Text="Change Password" FontSize="Medium" HorizontalOptions="StartAndExpand" TextColor="{StaticResource PrimaryTextColor}"
+                    Clicked="Password_Button_Clicked" BackgroundColor="Transparent"/>
+            <BoxView Color="Black" HeightRequest="1" Opacity="0.02"/>
+            <Button Text="Logout" FontSize="Medium" HorizontalOptions="StartAndExpand" TextColor="{StaticResource PrimaryTextColor}"
+                    Clicked="Logout_Button_Clicked" BackgroundColor="Transparent"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

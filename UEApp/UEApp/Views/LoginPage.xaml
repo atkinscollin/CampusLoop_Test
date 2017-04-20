@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:UEApp;assembly=UEApp"
+             x:Class="UEApp.LoginPage">
+    <ContentPage.Content>
+        <ScrollView Margin="15,30">
+            <StackLayout Orientation="Vertical">
+                <Image Source="campusloop_banner_red_240dp.png" VerticalOptions="Start"
+                       HorizontalOptions="FillAndExpand" HeightRequest="120"/>
+                <StackLayout x:Name="Warn_Layout" IsVisible="False"></StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Entry x:Name="Email" HorizontalOptions="FillAndExpand" VerticalOptions="Center"
+                           TextColor="{StaticResource PrimaryTextColor}" Keyboard="Email"
+                           Placeholder="Email address" PlaceholderColor="{StaticResource SecondaryTextColor}"/>
+                    <AbsoluteLayout x:Name="Email_Image_Feedback_Layout" IsVisible="False" VerticalOptions="Center">
+                        <Image x:Name="Email_Check" Source="ic_check_green_36dp.png" IsVisible="False" HorizontalOptions="EndAndExpand"/>
+                        <Image x:Name="Email_X" Source="ic_close_red_36dp.png" IsVisible="False" HorizontalOptions="EndAndExpand"/>
+                    </AbsoluteLayout>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Entry x:Name="Pass" HorizontalOptions="FillAndExpand" VerticalOptions="Center"
+                           TextColor="{StaticResource PrimaryTextColor}" IsPassword="True"
+                           Placeholder="Password" PlaceholderColor="{StaticResource SecondaryTextColor}"/>
+                    <Button Image="ic_eye_accent_36dp.png" Clicked="OnShowPass" VerticalOptions="Center"
+                            BackgroundColor="Transparent" HorizontalOptions="End"/>
+                    <AbsoluteLayout x:Name="Pass_Image_Feedback_Layout" IsVisible="False" VerticalOptions="Center">
+                        <Image x:Name="Pass_Check" Source="ic_check_green_36dp.png" IsVisible="False"
+                               HorizontalOptions="EndAndExpand"/>
+                        <Image x:Name="Pass_X" Source="ic_close_red_36dp.png" IsVisible="False"
+                               HorizontalOptions="EndAndExpand"/>
+                    </AbsoluteLayout>
+                </StackLayout>
+                <Button Text="Sign In" FontSize="Medium" TextColor="{StaticResource PrimaryTextWhite}"
+                            HorizontalOptions="FillAndExpand" Clicked="OnSignIn" BackgroundColor="{StaticResource AccentColor}"/>
+                <Button Text="Proceed Anonymously" FontSize="Small" TextColor="{StaticResource SecondaryTextColor}"
+                            HorizontalOptions="Center" Clicked="OnProceedAnon" BackgroundColor="Transparent" HeightRequest="37"/>
+                <Button Text="Register" FontSize="Small" TextColor="{StaticResource SecondaryTextColor}"
+                            HorizontalOptions="Center" Clicked="OnRegister" BackgroundColor="Transparent" HeightRequest="37"/>
+                <Button Text="Forgot Password" FontSize="Small" TextColor="{StaticResource SecondaryTextColor}"
+                            HorizontalOptions="Center" Clicked="OnForgot" BackgroundColor="Transparent" HeightRequest="37"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

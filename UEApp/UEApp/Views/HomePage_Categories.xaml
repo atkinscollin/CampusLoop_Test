@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:UEApp;assembly=UEApp"
+             x:Class="UEApp.HomePage_Categories">
+    <ContentPage.Content>
+        <ListView x:Name="categoryList" ItemsSource="{Binding Categories}" ItemSelected="OnItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Padding="15,0">
+                            <Label Text="{Binding}" FontSize="Medium" TextColor="{StaticResource PrimaryTextColor}"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:local="clr-namespace:UEApp;assembly=UEApp"
+            x:Class="UEApp.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PrimaryColor">#F44336</Color>
+            <Color x:Key="PrimaryDarkColor">#D32F2F</Color>
+            <Color x:Key="PrimaryLightColor">#FFCDD2</Color>
+            <Color x:Key="AccentColor">#FFC107</Color>
+            <Color x:Key="AccentLightColor">#FFE082</Color>
+            
+            <Color x:Key="PrimaryTextColor">#212121</Color>
+            <Color x:Key="SecondaryTextColor">#757575</Color>
+            
+            <Color x:Key="PrimaryTextWhite">#FFFFFF</Color>
+            <Color x:Key="SecondaryTextWhite">#EEEEEE</Color>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

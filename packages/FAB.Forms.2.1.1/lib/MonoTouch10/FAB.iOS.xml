@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FAB.iOS</name>
+    </assembly>
+    <members>
+        <member name="T:FAB.iOS.MNFloatingActionButton.ShadowState">
+             <summary>
+             Flags for hiding/showing shadow
+             </summary>
+            </member>
+        <member name="T:FAB.iOS.MNFloatingActionButton.FABSize">
+             <summary>
+             FAB Size options.
+             </summary>
+            </member>
+        <!--FIXME: Invalid documentation markup was found for member P:FAB.iOS.MNFloatingActionButton.Size-->
+        <member name="P:FAB.iOS.MNFloatingActionButton.CenterImageView">
+             <summary>
+             The image to display int the center of the button
+             </summary>
+             <value>The center image view.</value>
+            </member>
+        <member name="P:FAB.iOS.MNFloatingActionButton.BackgroundColor">
+             <summary>
+             Background Color of the FAB
+             </summary>
+             <value>The color of the background.</value>
+            </member>
+    </members>
+</doc>
