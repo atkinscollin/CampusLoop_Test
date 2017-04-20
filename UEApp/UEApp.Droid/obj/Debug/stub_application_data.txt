@@ -1,2 +1,0 @@
-android.app.Application
-UEApp.Droid.UEApp.Droid
