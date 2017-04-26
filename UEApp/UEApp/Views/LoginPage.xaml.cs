@@ -54,8 +54,14 @@ namespace UEApp
 
         private void OnShowPass(object sender, EventArgs e)
         {
-            if (Pass.IsPassword) Pass.IsPassword = false;
-            else Pass.IsPassword = true;
+            if (Pass.IsPassword)
+            {
+                Pass.IsPassword = false;
+            }
+            else
+            {
+                Pass.IsPassword = true;
+            }
         }
 
         private Boolean Email_Validate()

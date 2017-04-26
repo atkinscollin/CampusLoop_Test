@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Rg.Plugins.Popup.Extensions;
+using Rg.Plugins.Popup.Services;
 
 /* Main homepage of the app, first tab
    Shows the feed of most recent/upcoming events
@@ -24,7 +25,7 @@ namespace UEApp
             this.ToolbarItems.Add(new ToolbarItem { Icon = "ic_search_white_36dp.png", Command = Goto_SearchPage });
         }
 
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
             // Clears last page from memory after home button has been pressed
             // await Navigation.PopModalAsync();
@@ -32,7 +33,9 @@ namespace UEApp
             base.OnAppearing();
 
             if (vm.Events.Count == 0)
-            vm.LoadEventsCommand.Execute(null);
+            {
+                vm.LoadEventsCommand.Execute(null);
+            }
 
             /*
             if (vm.Events.Count == 0 && Settings.IsLoggedIn)
@@ -69,20 +72,33 @@ namespace UEApp
         void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
             => ((ListView)sender).SelectedItem = null;
 
-        async void Handle_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        async void Handle_ItemSelected(Object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem == null)
                 return;
 
-            await DisplayAlert("Selected", e.SelectedItem.ToString(), "OK");
+            await DisplayAlert("Selected", ((Event)e.SelectedItem).Id, "OK");
+            await Navigation.PushModalAsync(new NavigationPage(new EventView(((Event)e.SelectedItem).Id)));
 
-            //Deselect Item
             ((ListView)sender).SelectedItem = null;
         }
 
-        void Handle_FabClicked(object sender, System.EventArgs e)
+        private async void Handle_FabClicked(object sender, EventArgs e)
         {
-            Navigation.PushPopupAsync(new EventCreation());
+            var event_create_page = new EventCreation();
+            event_create_page.CreateComplete += HandleCreateComplete;
+            event_create_page.CreateIncomplete += HandleCreateIncomplete;
+            await Navigation.PushPopupAsync(event_create_page);
+        }
+
+        private async void HandleCreateComplete(object sender, EventArgs e)
+        {
+            await PopupNavigation.PopAsync();
+        }
+
+        private async void HandleCreateIncomplete(object sender, EventArgs e)
+        {
+            await PopupNavigation.PopAsync();
         }
     }
 }

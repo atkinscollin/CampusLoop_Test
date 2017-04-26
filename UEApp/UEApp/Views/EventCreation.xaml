@@ -10,12 +10,11 @@
     <ScrollView>
       <StackLayout Orientation="Vertical" Spacing="15">
         <StackLayout x:Name="Warn_Layout" IsVisible="False"></StackLayout>
-        <Entry x:Name="Event_Title" Placeholder="Title" Keyboard="Text" TextColor="{StaticResource PrimaryTextColor}"
-               />
-        <Entry x:Name="Event_Place" Placeholder="Place" Keyboard="Text" TextColor="{StaticResource PrimaryTextColor}"/>
+        <Entry x:Name="Event_Title" Text="{Binding _Title}" Placeholder="Title" Keyboard="Text" TextColor="{StaticResource PrimaryTextColor}"/>
+        <Entry x:Name="Event_Place" Text="{Binding _Location}" Placeholder="Place" Keyboard="Text" TextColor="{StaticResource PrimaryTextColor}"/>
         <StackLayout Orientation="Horizontal">
-          <TimePicker x:Name="timepickle" HorizontalOptions="StartAndExpand"/>
-          <DatePicker x:Name="datepickle" Date="{x:Static sys:DateTime.Now}" MinimumDate="{x:Static sys:DateTime.Now}" HorizontalOptions="EndAndExpand">
+          <TimePicker x:Name="timepickle" Time="{Binding _Date, Mode=TwoWay}" HorizontalOptions="StartAndExpand"/>
+          <DatePicker x:Name="datepickle" Date="{Binding _Date, Mode=TwoWay, {x:Static sys:DateTime.Now}}" MinimumDate="{x:Static sys:DateTime.Now}" HorizontalOptions="EndAndExpand">
             <DatePicker.Format>M/d/yyyy</DatePicker.Format>
             <DatePicker.MaximumDate>
               <sys:DateTime x:FactoryMethod="Parse">

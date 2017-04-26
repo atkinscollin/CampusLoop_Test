@@ -7,11 +7,11 @@
         <ScrollView>
             <StackLayout Orientation="Vertical">
                 <StackLayout>
-                    <Image x:Name="banner" Source="http://www.min.uc.edu/ucsc/img/uc-logo-400w-ss.png/image" 
+                    <Image x:Name="banner" Source="{Binding PhotoURL}" 
                            VerticalOptions="Start" HorizontalOptions="FillAndExpand" HeightRequest="120"/>
                 </StackLayout>
                 <StackLayout Spacing="15" Padding="15,0">
-                    <Label Text="Cool Guy Meetup" FontSize="24" HorizontalOptions="Center" TextColor="{StaticResource PrimaryTextColor}"/>
+                    <Label Text="{Binding Title}" FontSize="24" HorizontalOptions="Center" TextColor="{StaticResource PrimaryTextColor}"/>
                     <StackLayout Orientation="Horizontal">
                         <Label x:Name="Attenders_Label" Text="17 Going" FontSize="Medium" VerticalOptions="Center"
                                 TextColor="{StaticResource PrimaryTextColor}" HorizontalOptions="StartAndExpand"/>
@@ -23,8 +23,8 @@
                     <BoxView Color="Black" HeightRequest="1" Opacity="0.02"/>
                     <StackLayout Orientation="Horizontal">
                         <StackLayout Orientation="Vertical" VerticalOptions="Center">
-                            <Label Text="Saturday, March 23" HorizontalOptions="StartAndExpand" FontSize="Medium" TextColor="{StaticResource PrimaryTextColor}"/>
-                            <Label Text="1:00 PM" HorizontalOptions="StartAndExpand" FontSize="Medium" TextColor="{StaticResource PrimaryTextColor}"/>
+                            <Label Text="{Binding DateDisplay}" HorizontalOptions="StartAndExpand" FontSize="Medium" TextColor="{StaticResource PrimaryTextColor}"/>
+                            <Label Text="{Binding TimeDisplay}" HorizontalOptions="StartAndExpand" FontSize="Medium" TextColor="{StaticResource PrimaryTextColor}"/>
                         </StackLayout>
                         <Button x:Name="Cal_Button" HorizontalOptions="EndAndExpand" Clicked="Cal_Button_Clicked"
                                 Image="ic_calendar_accent_36dp.png" BackgroundColor="Transparent"/>
@@ -41,9 +41,6 @@
                                 Image="ic_navigation_accent_36dp.png" BackgroundColor="Transparent"
                                 IsEnabled="False" IsVisible="False"/>
                     </StackLayout>
-                    <BoxView Color="Black" HeightRequest="1" Opacity="0.02"/>
-                    <Label Text="We can dance if we want to. We can leave your friends behind. 'Cause your friends don't dance. And if they don't dance. Well, they're no friends of mine."
-                           HorizontalOptions="Center" FontSize="Medium" TextColor="{StaticResource PrimaryTextColor}"/>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

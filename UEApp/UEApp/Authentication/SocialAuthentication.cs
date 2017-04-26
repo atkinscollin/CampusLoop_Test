@@ -2,14 +2,11 @@
 
 #if AZURE
 
-using System;
 using System.Collections.Generic;
-using System.Text;
 using Microsoft.WindowsAzure.MobileServices;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using Xamarin.Forms;
-using Android.Content;
 
 [assembly: Dependency(typeof(UEApp.SocialAuthentication))]
 namespace UEApp

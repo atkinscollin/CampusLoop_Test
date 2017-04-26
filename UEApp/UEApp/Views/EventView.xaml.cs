@@ -12,6 +12,7 @@ namespace UEApp
 {
     public partial class EventView : ContentPage
     {
+        EventsViewModel vm;
         // items source for the picker to change time before event to get a reminder
         public List<string> attend_status = new List<string>
         {
@@ -20,9 +21,14 @@ namespace UEApp
             "Can't Go"
         };
 
-        public EventView()
+        public EventView(string givenID)
         {
             InitializeComponent();
+
+            vm = new EventsViewModel();
+            vm._ID = givenID;
+            vm.LoadSingleEventCommand.Execute(null);
+            BindingContext = vm.SingleEvent;
 
             this.Title = "Event";
 

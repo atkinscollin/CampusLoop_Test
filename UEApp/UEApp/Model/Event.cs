@@ -17,9 +17,12 @@ namespace UEApp
         public string Tag1 { get; set; }
 
         [Newtonsoft.Json.JsonIgnore]
-        public string DateDisplay { get { return Date.ToLocalTime().ToString("d"); } }
+        public string DateDisplay { get { return Date.ToLocalTime().ToString("dddd, MMMM dd"); } }
 
         [Newtonsoft.Json.JsonIgnore]
-        public string TimeDisplay { get { return Date.ToLocalTime().ToString("t"); } }
+        public string TimeDisplay { get { return Date.ToLocalTime().ToString("hh:mm tt"); } }
+
+        [Newtonsoft.Json.JsonIgnore]
+        public string DateTimeDisplay { get { return Date.ToLocalTime().ToString("ddd, MMM dd hh:mm tt"); } }
     }
 }

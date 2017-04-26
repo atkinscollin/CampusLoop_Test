@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="UEApp.Droid.UEApp.Droid" android:installLocation="auto" android:versionCode="1" android:versionName="1.0.0.0">
 	<uses-sdk android:minSdkVersion="15" />
-	<application android:label="campusLoop" android:icon="@drawable/ic_campusloop_launcher">
-	</application>
+	<application android:label="campusLoop" android:icon="@drawable/ic_campusloop_launcher"></application>
 </manifest>

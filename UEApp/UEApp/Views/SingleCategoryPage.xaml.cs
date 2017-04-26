@@ -36,10 +36,10 @@ namespace UEApp
         }
 
         // Using this temporarily to look at the eventview page
-        public void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem == null) return;
-            Navigation.PushModalAsync(new NavigationPage(new EventView()) { Title = "Event" });
+            await Navigation.PushModalAsync(new NavigationPage(new EventView(((Event)e.SelectedItem).Id)));
             ((ListView)sender).SelectedItem = null;
         }
     }

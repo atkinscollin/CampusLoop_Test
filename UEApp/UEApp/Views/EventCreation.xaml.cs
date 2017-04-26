@@ -14,25 +14,37 @@ namespace UEApp
 {
     public partial class EventCreation : PopupPage
     {
+        EventsViewModel vm;
+        public event EventHandler CreateComplete;
+        public event EventHandler CreateIncomplete;
+
         public EventCreation()
         {
             InitializeComponent();
 
-            //BindingContext = new EventsDataModel();
+            BindingContext = vm = new EventsViewModel();
 
-            timepickle.Time = new TimeSpan(DateTime.Now.Hour + 1, 0, 0);
+            var ts = new TimeSpan(1, 0, 0);
+            timepickle.Time = new TimeSpan(DateTime.Now.Hour, 0, 0).Add(ts);
         }
 
         private async void OnImageSelect(object sender, EventArgs e)
         {
             // Code for enabling user to select banner commented out at bottom
             var gallery_view_page = new GalleryView();
+            gallery_view_page.ImageSelected += HandleImageSelected;
             await Navigation.PushPopupAsync(gallery_view_page);
+        }
+
+        private async void HandleImageSelected(object sender, String imageSelectedSource)
+        {
+            vm._PhotoURL = imageSelectedSource;
+            await PopupNavigation.PopAsync();
         }
 
         private void OnCancel(object sender, EventArgs e)
         {
-            PopupNavigation.PopAsync();
+            CreateIncomplete?.Invoke(this, EventArgs.Empty);
         }
 
         // Checks a lot of things to see if they are okay, if everything passes it pops the page
@@ -112,8 +124,15 @@ namespace UEApp
             }
             else
             {
-                //var Event = new EventsDataModel.Event { Title = Event_Title.Text, Location = Event_Place.Text };
-                PopupNavigation.PopAsync();
+                TimeSpan ts = datepickle.Date - datepickle.Date.Date;
+                DateTime dt = datepickle.Date.Date - ts + timepickle.Time;
+                vm._Date = dt;
+                if (pickle0.SelectedIndex > -1)
+                {
+                    vm._Tag1 = pickle0.SelectedItem.ToString();
+                }
+                vm.AddEventCommand.Execute(null);
+                CreateComplete?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -131,6 +150,7 @@ namespace UEApp
                 pickle2.IsVisible = true;
             }
         }
+
     }
 }
 

@@ -12,7 +12,8 @@
 				         RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}">
                 <ListView x:Name="list" RowHeight="100" HasUnevenRows="True" ItemTapped="Handle_ItemTapped" ItemSelected="Handle_ItemSelected"
                           AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" ItemsSource="{Binding Events}"
-                          IsPullToRefreshEnabled="true" IsRefreshing="{Binding IsBusy, Mode=OneWay}" RefreshCommand="{Binding LoadEventsCommand}">
+                          IsPullToRefreshEnabled="true" IsRefreshing="{Binding IsBusy, Mode=OneWay}" RefreshCommand="{Binding LoadEventsCommand}"
+                          CachingStrategy="RecycleElement">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell Appearing="Alt_Cell_Colors">
@@ -20,12 +21,12 @@
                                     <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" Padding="15,5,5,5">
                                         <Label Text="{Binding Title}" FontSize="Medium" TextColor="{StaticResource PrimaryTextColor}"/>
                                         <Label Text="{Binding Location}" FontSize="Small" TextColor="{StaticResource SecondaryTextColor}"/>
-                                        <Label Text="{Binding TimeDisplay}" FontSize="Small" TextColor="{StaticResource SecondaryTextColor}"/>
+                                        <Label Text="{Binding DateTimeDisplay}" FontSize="Small" TextColor="{StaticResource SecondaryTextColor}"/>
                                         <StackLayout Orientation="Horizontal">
                                             <Label Text="{Binding Tag1}" FontSize="Micro" TextColor="{StaticResource SecondaryTextColor}"/>
                                         </StackLayout>
                                     </StackLayout>
-                                    <Image Source="{Binding PhotoUrl}" HorizontalOptions="EndAndExpand" WidthRequest="80" HeightRequest="80"/>
+                                    <Image Source="{Binding PhotoURL}" HorizontalOptions="EndAndExpand" WidthRequest="80" HeightRequest="80"/>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>

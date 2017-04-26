@@ -4,7 +4,6 @@ using System.Windows.Input;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using Xamarin.Forms;
-using System.Collections.ObjectModel;
 using System.Collections.Generic;
 
 namespace UEApp
@@ -18,7 +17,8 @@ namespace UEApp
         }
 
         public ObservableRangeCollection<Event> Events { get; } = new ObservableRangeCollection<Event>();
-        
+        public Event SingleEvent { get; set; } = new Event();
+
         public List<string> categories = new List<string>
         {
             "Art",
@@ -65,6 +65,41 @@ namespace UEApp
                 Debug.WriteLine("OH NO!" + ex);
 
                 await Application.Current.MainPage.DisplayAlert("Sync Error", "Unable to sync events, you may be offline", "OK");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        string _id;
+        public string _ID
+        {
+            get { return _id; }
+            set { SetProperty(ref _id, value); }
+        }
+
+        ICommand loadSingleEventCommand;
+        public ICommand LoadSingleEventCommand =>
+            loadSingleEventCommand ?? (loadSingleEventCommand = new Command(async () => await ExecuteLoadSingleEventCommandAsync()));
+
+        async Task ExecuteLoadSingleEventCommandAsync()
+        {
+            if (IsBusy || !(await LoginAsync()))
+                return;
+
+            try
+            {
+                LoadingMessage = "Loading Event...";
+                IsBusy = true;
+                SingleEvent = await eventDataService.GetEvent(_ID);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("OH NO!" + ex);
+
+                await Application.Current.MainPage.DisplayAlert("Sync Error", "Unable to get single event, you may be offline", "OK");
+                return;
             }
             finally
             {

@@ -2,7 +2,6 @@
 using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 using Microsoft.WindowsAzure.MobileServices.Sync;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -60,6 +59,14 @@ namespace UEApp
             return await eventTable.OrderBy(c => c.Date).ToEnumerableAsync();
         }
 
+        public async Task<Event> GetEvent(string givenID)
+        {
+            await Initialize();
+            await SyncEvent();
+
+            return await eventTable.LookupAsync(givenID);
+        }
+
         public async Task<Event> AddEvent(string title, string location, DateTime date, string photoURL, string tag1)
         {
             await Initialize();
@@ -69,7 +76,7 @@ namespace UEApp
 
             await eventTable.InsertAsync(freshEvent);
 
-            //Synchronize coffee
+            //Synchronize event
             await SyncEvent();
 
             return freshEvent;
@@ -79,7 +86,7 @@ namespace UEApp
         {
             try
             {
-                //pull down all latest changes and then push current coffees up
+                //pull down all latest changes and then push current events up
                 await eventTable.PullAsync("allEvents", eventTable.CreateQuery());
                 await MobileService.SyncContext.PushAsync();
             }
