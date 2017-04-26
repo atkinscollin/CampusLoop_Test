@@ -24,6 +24,17 @@ namespace UEApp.Droid
 
             base.OnCreate(bundle);
             global::Xamarin.Forms.Forms.Init(this, bundle);
+
+            /* Might need for test cloud
+            //Mapping StyleID to element content descriptions
+            Xamarin.Forms.Forms.ViewInitialized += (object sender, Xamarin.Forms.ViewInitializedEventArgs e) =>
+            {
+                if (!string.IsNullOrWhiteSpace(e.View.StyleId))
+                {
+                    e.NativeView.ContentDescription = e.View.StyleId;
+                }
+            };
+            */
             LoadApplication(new App());
         }
     }
@@ -59,16 +70,18 @@ namespace UEApp.Droid
             Control.CheckedChange += (sender, e2) =>
         {
             ((IElementController)base.Element).SetValueFromRenderer(Xamarin.Forms.Switch.IsToggledProperty, Control.Checked);
-            if (Control.Checked){
+            if (Control.Checked)
+            {
                 Control.ThumbDrawable.SetColorFilter(new Android.Graphics.Color(Android.Graphics.Color.ParseColor("#FFC107")), PorterDuff.Mode.SrcAtop);
             }
-            else{
+            else
+            {
                 Control.ThumbDrawable.SetColorFilter(new Android.Graphics.Color(222, 222, 222), PorterDuff.Mode.SrcAtop);
             }
 
         };
         }
     }
-    
+
 }
 

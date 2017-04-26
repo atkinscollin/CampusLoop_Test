@@ -27,16 +27,29 @@ namespace UEApp
         protected override async void OnAppearing()
         {
             // Clears last page from memory after home button has been pressed
-            //await Navigation.PopModalAsync();
+            // await Navigation.PopModalAsync();
 
             base.OnAppearing();
-            
-            //CrossConnectivity.Current.ConnectivityChanged += ConnecitvityChanged;
-            //OfflineStack.IsVisible = !CrossConnectivity.Current.IsConnected;
 
             if (vm.Events.Count == 0)
+            vm.LoadEventsCommand.Execute(null);
+
+            /*
+            if (vm.Events.Count == 0 && Settings.IsLoggedIn)
                 vm.LoadEventsCommand.Execute(null);
+            else
+            {
+                await vm.LoginAsync();
+                if (Settings.IsLoggedIn)
+                    vm.LoadEventsCommand.Execute(null);
+            }
+            */
         }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+        }        
 
         // Custom function for displaying different background colors on alternating cells
         private bool isRowEven;

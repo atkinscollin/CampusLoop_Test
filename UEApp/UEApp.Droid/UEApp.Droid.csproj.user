@@ -2,6 +2,6 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <SelectedDevice>LGE Nexus 5X</SelectedDevice>
-    <DefaultDevice>Android_ARMv7a</DefaultDevice>
+    <DefaultDevice>Nexus_5x_7.1.1_API_25</DefaultDevice>
   </PropertyGroup>
 </Project>

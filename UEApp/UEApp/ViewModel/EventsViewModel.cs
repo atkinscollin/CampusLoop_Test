@@ -17,8 +17,8 @@ namespace UEApp
             eventDataService = DependencyService.Get<EventDataService>();
         }
 
-        public ObservableCollection<Event> Events { get; } = new ObservableCollection<Event>();
-
+        public ObservableRangeCollection<Event> Events { get; } = new ObservableRangeCollection<Event>();
+        
         public List<string> categories = new List<string>
         {
             "Art",
@@ -50,20 +50,21 @@ namespace UEApp
 
         async Task ExecuteLoadEventsCommandAsync()
         {
-            if (IsBusy)
+            if (IsBusy || !(await LoginAsync()))
                 return;
 
             try
             {
                 LoadingMessage = "Loading Events...";
                 IsBusy = true;
-                var events = await eventDataService.GetEvents();
+                var newEvents = await eventDataService.GetEvents();
+                Events.ReplaceRange(newEvents);
             }
             catch (Exception ex)
             {
                 Debug.WriteLine("OH NO!" + ex);
 
-                await Application.Current.MainPage.DisplayAlert("Sync Error", "Unable to sync coffees, you may be offline", "OK");
+                await Application.Current.MainPage.DisplayAlert("Sync Error", "Unable to sync events, you may be offline", "OK");
             }
             finally
             {
@@ -112,7 +113,7 @@ namespace UEApp
 
         async Task ExecuteAddEventCommandAsync()
         {
-            if (IsBusy)
+            if (IsBusy || !(await LoginAsync()))
                 return;
 
             try
@@ -132,8 +133,16 @@ namespace UEApp
                 LoadingMessage = string.Empty;
                 IsBusy = false;
             }
-
         }
+
+        public Task<bool> LoginAsync()
+        {
+            if (Settings.IsLoggedIn)
+                return Task.FromResult(true);
+
+            return eventDataService.LoginAsync();
+        }
+
     }
 }
 
